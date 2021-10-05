@@ -1,15 +1,46 @@
 .todo__task {
-  display: flex;
-  flex-direction: column;
+  width: 1000px;
   border: 1px solid #000;
 }
 
 .todo__item {
   position: relative;
+  padding: 10px;
+}
+
+.todo__buttons {
+  width: 180px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 12px;
+  right: 50px;
+}
+
+.todo__link {
+  text-decoration: none;
+  color: #000;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.todo__checkbox-container {
+  width: 30px;
+  position: relative;
+}
+
+.todo__checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.todo__link:hover {
+  cursor: pointer;
 }
 
 .btn {
-  width: 60px;
+  width: 80px;
   background-color: #000;
   color: #fff;
   font-size: 14px;
@@ -19,9 +50,4 @@
 
 .btn:hover {
   cursor: pointer;
-}
-
-.todo__checkbox {
-  width: 20px;
-  height: 20px;
 }

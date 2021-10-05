@@ -6,6 +6,13 @@ import { TodoService } from '../todo.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main.component';
 import { MyCompComponent } from './my-comp/my-comp.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthComponent } from './auth/auth.component';
+import { MainRoutingModule } from './main-routing.module';
+import { AuthService } from '../auth.service';
+import { TaskComponent } from './task/task.component';
 
 
 
@@ -14,15 +21,22 @@ import { MyCompComponent } from './my-comp/my-comp.component';
     MainComponent,
     MyCompComponent,
     NewTodoComponent,
-    FilterPipe
+    FilterPipe,
+    HomeComponent,
+    NotFoundComponent,
+    TasksComponent,
+    AuthComponent,
+    TaskComponent
   ],
   imports: [
     ReactiveFormsModule, 
     FormsModule,
-    CommonModule
+    CommonModule,
+    MainRoutingModule
   ],
   providers: [
-    TodoService
+    TodoService,
+    AuthService
   ],
   exports: [
     MainComponent 

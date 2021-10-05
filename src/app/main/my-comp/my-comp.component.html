@@ -1,14 +1,18 @@
-<!-- <p>Hello {{name}}</p>
-<input type="text" (input)="onInput($event)" [value]="name"> -->
 <div class="todo__task">
     <div class="todo__item">
-        <span (click)="isOpen = !isOpen">{{todo.title}}</span>
-        <button (click)="editItem(todo.id)" class="btn">Edit</button>
-        <button (click)="deleteItem(todo.id)" class="btn">Delete</button>
-        <input class="todo__checkbox" type="checkbox" (click)="completeTask(todo.id)" [attr.checked]="todo.isDone ? true : null">
+        <a [routerLink]="['/tasks', todo.id]" class="todo__link">
+            <span (click)="isOpen = !isOpen">{{todo.title}}</span>
+        </a>
+        <div class="todo__buttons">
+            <button (click)="editItem(todo.id)" class="btn">Edit</button>
+            <button (click)="deleteItem(todo.id)" class="btn">Delete</button>
+        </div>
+        <div class="todo__checkbox-container">
+            <input class="todo__checkbox" type="checkbox" (click)="completeTask(todo.id)" [attr.checked]="todo.isDone ? true : null">
+        </div>
     </div>
     <div *ngIf="isOpen">
-        {{todo.description}}
-        {{todo.date | date: 'dd/MM/yyyy'}}
+        <div><strong>Description: </strong><small>{{todo.description}}</small></div>
+        <div><strong>Deadline date:</strong> {{todo.date | date: 'dd/MM/yyyy'}}</div>
     </div>
 </div>

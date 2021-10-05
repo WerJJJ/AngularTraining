@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.home {
+}
+
+.home__wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.home__title {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.home__picture {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 70px;
+}

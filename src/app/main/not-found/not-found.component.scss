@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.not-found__wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.not-found__title {
+  font-size: 48px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.not-found__picture {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 50px;
+}
