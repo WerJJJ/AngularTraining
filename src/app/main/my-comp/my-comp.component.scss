@@ -1,0 +1,27 @@
+.todo__task {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000;
+}
+
+.todo__item {
+  position: relative;
+}
+
+.btn {
+  width: 60px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  outline: none;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.todo__checkbox {
+  width: 20px;
+  height: 20px;
+}

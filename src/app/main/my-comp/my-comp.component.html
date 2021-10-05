@@ -1,0 +1,14 @@
+<!-- <p>Hello {{name}}</p>
+<input type="text" (input)="onInput($event)" [value]="name"> -->
+<div class="todo__task">
+    <div class="todo__item">
+        <span (click)="isOpen = !isOpen">{{todo.title}}</span>
+        <button (click)="editItem(todo.id)" class="btn">Edit</button>
+        <button (click)="deleteItem(todo.id)" class="btn">Delete</button>
+        <input class="todo__checkbox" type="checkbox" (click)="completeTask(todo.id)" [attr.checked]="todo.isDone ? true : null">
+    </div>
+    <div *ngIf="isOpen">
+        {{todo.description}}
+        {{todo.date | date: 'dd/MM/yyyy'}}
+    </div>
+</div>

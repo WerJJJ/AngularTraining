@@ -1,0 +1,54 @@
+<!-- <div class="todo__create"> -->
+    <!-- <input type="text" #input (input)="inputHandler(input.value)">
+    <button (click)="addTodoPress()" class="btn">Add</button> -->
+<!-- </div> -->
+
+<div class="jw-modal">
+    <div class="jw-modal__body">
+       <div [formGroup]="profileForm">
+        <h2 class="jw-modal__title" *ngIf="!isEdit">Create TodoTask</h2>
+        <h2 class="jw-modal__title"*ngIf="isEdit">Edit TodoTask</h2>
+      
+        <ul class="jw-modal__list">
+            <li class="jw-modal__item">
+                <div class="jw-modal__item-content">
+                    <label for="title">Title: </label>
+                    <input id="title" type="text" formControlName="title">  
+                </div>
+                <div class="validation" *ngIf="profileForm.get('title')?.invalid && profileForm.get('title')?.touched">
+                    <small *ngIf="profileForm.get('title')?.errors?.required">
+                        Field not be empty.
+                    </small>
+                    <small *ngIf="profileForm.get('title')?.errors?.error">
+                        Enter less than 4 words.
+                    </small>
+                </div>
+            </li>
+            <li class="jw-modal__item">
+                <div class="jw-modal__item-content">
+                    <label for="description">Description:</label>
+                    <input id="description" type="text" formControlName="description" [attr.disabled]="!!profileForm.get('title')?.value ? null : true">
+                </div>
+                <div class="validation" *ngIf="profileForm.get('description')?.invalid && profileForm.get('description')?.touched">
+                    <small *ngIf="profileForm.get('description')?.errors?.required">
+                        Field not be empty.
+                    </small>
+                    <small *ngIf="profileForm.get('description')?.errors?.maxlength">
+                        Enter less than 256 symbols.
+                    </small>
+                </div>
+            </li>
+            <li class="jw-modal__item">
+                <div class="jw-modal__item-content">
+                    <label for="date">Date: </label>
+                    <input id="date" type="date" formControlName="date" [attr.disabled]="!!profileForm.get('title')?.value ? null : true">
+                </div>
+                <div class="validation" *ngIf="profileForm.get('date')?.invalid && profileForm.get('date')?.touched">
+                    <small>Enter a deadline date, not earlier than today.</small>
+                </div>  
+            </li>
+        </ul>
+      </div>
+       <button class="jw-modal__close-button" id="createProductCloseBtn" (click)="saveTask()">Save</button>
+    </div>
+</div>

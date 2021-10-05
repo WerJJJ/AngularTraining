@@ -1,0 +1,17 @@
+<div class="todo">
+    <h2 class="todo__title">Todo list</h2>
+   <div class="todo__subtitle">
+        <button class="btn btn-add" (click)="createNewTodo()">Add new todo</button>
+        <input type="text" [(ngModel)]="search">
+   </div>
+    <app-new-todo *ngIf="isOpenModal" (task)="addTodoPress($event)" [objectToEdit]="editObject" (editedTask)="editTodoTask($event)"></app-new-todo>
+    <div class="todo__items">
+        <app-my-comp 
+            *ngFor="let todoItem of todoTasks | filter: search"
+            [todo]="todoItem" 
+            (deleteItemEvent)="deleteItem($event)"
+            (editItemEvent)="editItem($event)"
+            (completeItemEvent)="completeTodoTask($event)">
+        </app-my-comp> 
+    </div>
+</div>
