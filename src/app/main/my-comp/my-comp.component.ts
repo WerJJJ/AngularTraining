@@ -11,7 +11,7 @@ export class MyCompComponent{
   @Output() editItemEvent = new EventEmitter<number>();
   @Output() completeItemEvent = new EventEmitter<number>();
 
-  isOpen = false;
+  isOpen = false; 
 
   editItem (value: number) {
     this.editItemEvent.emit(value);
@@ -19,7 +19,7 @@ export class MyCompComponent{
   deleteItem (value: number) {
     this.deleteItemEvent.emit(value);
   }
-  completeTask(value: number) {
+  completeTask(value: number) { 
     this.completeItemEvent.emit(value);
   }
 }

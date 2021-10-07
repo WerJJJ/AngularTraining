@@ -14,7 +14,11 @@ const routes: Routes = [
     },
     {
         path: 'auth',
-        component: AuthComponent
+        // component: AuthComponent
+        loadChildren: () => {
+            return import('./auth/auth.module')
+            .then(m => m.AuthModule)
+        }
     },
     {
         path: 'tasks',
@@ -23,7 +27,8 @@ const routes: Routes = [
     },
     {
         path: 'tasks/:id',
-        component: TaskComponent
+        component: TaskComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: '404',

@@ -4,7 +4,7 @@ import { Injectable, Input } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor() { }
+  constructor() {}
 
   authState: boolean = false;
 
