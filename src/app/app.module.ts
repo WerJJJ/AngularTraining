@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// import * as todoReducer from './main/state/reducer/product.reducer';
 import * as todoReducer from './main/state/reducer/product.reducer';
 
 import { AppRoutingModule } from './app-routing.module';

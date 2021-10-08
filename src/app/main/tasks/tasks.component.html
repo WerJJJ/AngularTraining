@@ -11,7 +11,7 @@
     <app-new-todo *ngIf="isOpenModal" (task)="addTodoPress($event)" [objectToEdit]="editObject"></app-new-todo>
     <div class="todo__items">
             <app-my-comp 
-                *ngFor="let todoItem of (todoTasks | async) "
+                *ngFor="let todoItem of (todoTasks | async)"
                 [todo]="todoItem" >
             </app-my-comp> 
     </div>
