@@ -6,7 +6,7 @@ import { Injectable, Input } from '@angular/core';
 export class AuthService {
   constructor() {}
 
-  authState: boolean = false;
+  authState: boolean = true;
 
   logIn() {
     this.authState = true;

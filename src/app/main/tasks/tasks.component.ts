@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, RequiredValidator, Validators } from '@angular/forms';
-import { Subscription, timer } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { debounceTime, filter, map } from 'rxjs/operators'
 import { TodoService } from 'src/app/todo.service';
 import { TodoTask } from '../model/todotask';
@@ -79,7 +79,7 @@ export class TasksComponent implements OnDestroy {
     console.log(value)
   }
 
-  get todoTasks () : TodoTask[] {
+  get todoTasks () : Observable<TodoTask[]> {
     return this.todoService.todoTasks;
   }
 }
