@@ -8,14 +8,17 @@
         <!-- <button (click)="filterList()">Filter</button> -->
         <!-- [(ngModel)]="search" -->
    </div>
-    <app-new-todo *ngIf="isOpenModal" (task)="addTodoPress($event)" [objectToEdit]="editObject" (editedTask)="editTodoTask($event)"></app-new-todo>
+    <app-new-todo *ngIf="isOpenModal" (task)="addTodoPress($event)" [objectToEdit]="editObject"></app-new-todo>
     <div class="todo__items">
             <app-my-comp 
                 *ngFor="let todoItem of (todoTasks | async) "
-                [todo]="todoItem" 
-                (deleteItemEvent)="deleteItem($event)"
-                (editItemEvent)="editItem($event)"
-                (completeItemEvent)="completeTodoTask($event)">
+                [todo]="todoItem" >
             </app-my-comp> 
     </div>
 </div>
+<!-- 
+(deleteItemEvent)="deleteItem($event)"
+                (editItemEvent)="editItem($event)"
+                (completeItemEvent)="completeTodoTask($event)" -->
+
+                <!-- (editedTask)="editTodoTask($event)" -->

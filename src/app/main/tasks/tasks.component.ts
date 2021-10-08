@@ -47,14 +47,14 @@ export class TasksComponent implements OnDestroy {
     this.isOpenModal = true;
   }
   
-  editItem(editId: number) {
+  /* editItem(editId: number) {
     this.editObject =  this.todoService.findItemById(editId) || null;
     this.isOpenModal = true;
-  }
-
+  } */
+/* 
   deleteItem(deleteId: number) {
     this.todoService.deleteItem(deleteId);
-  }
+  } */
 
   inputHandler(value: string) {
     this.value = value;
@@ -65,7 +65,7 @@ export class TasksComponent implements OnDestroy {
     this.isOpenModal = !this.isOpenModal;
   }
 
-  editTodoTask(editedTask: TodoTask) {
+  /* editTodoTask(editedTask: TodoTask) {
     this.todoService.editItem(editedTask);
     this.editObject = null;
     this.isOpenModal = false;
@@ -73,7 +73,7 @@ export class TasksComponent implements OnDestroy {
 
   completeTodoTask(completeId: number) {
     this.todoService.completeTask(completeId);
-  }
+  } */
 
   filterList(value: string) {
     console.log(value)

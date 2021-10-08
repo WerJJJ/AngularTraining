@@ -39,7 +39,7 @@ export class TodoService {
     return this.store.pipe(select(TodoSelector.getTodoTask));
   }
 
-  findItemById(id: number) : TodoTask | undefined {
+/*   findItemById(id: number) : TodoTask | undefined {
     return this.todos.find(item => item.id === id);
   }
 
@@ -47,10 +47,11 @@ export class TodoService {
     this.todos = this.todos.filter(item => {
       return item.id !== deleteId;
     })
-  }
+  } */
 
   private generateId () : number{
-    return this.todos.length + 1;
+    // return this.todos.length + 1;
+    return 1;
   }
 
   addItem (task: TodoTask) {
@@ -59,12 +60,12 @@ export class TodoService {
     this.store.dispatch(TodoActions.AddTask({ payload: {todo: todoTask } }))
   }
 
-  editItem(task: TodoTask) {
+ /*  editItem(task: TodoTask) {
     let editedTaskIndex = this.todos.findIndex(item => item.id === task.id);
     this.todos[editedTaskIndex] = task;
   }
   completeTask(completeId: number) {
     const completeTask = this.todos.find(item => item.id === completeId);
      completeTask!.isDone = true;
-  }
+  }  */
 }
