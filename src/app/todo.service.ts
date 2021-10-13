@@ -5,67 +5,55 @@ import {TodoTask} from './main/model/todotask';
 import * as TodoActions from '../app/main/state/actions/product.actions';
 import * as TodoSelector from '../app/main/state/selectors/product.selector';
 import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
   constructor(private store: Store<any>) { }
-  // private todos:TodoTask[] = [
-  //   {
-  //     id: 1,
-  //     title:'Learn Angular',
-  //     description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugiat ratione dignissimos voluptatem neque nesciunt obcaecati officiis totam ipsam sit itaque culpa debitis laudantium quod rerum autem, ipsum asperiores quisquam, provident nemo. Illo optio, ex suscipit, officia in alias magni perspiciatis officiis animi dicta quos possimus minima aperiam atque harum?',
-  //     date: '2021-10-22',
-  //     isDone: false
-  //   },
-  //   {
-  //     id: 2,
-  //     title:'Tell Nataliya that she is a great mentor',
-  //     description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos adipisci facilis commodi consequuntur inventore omnis autem vitae architecto, iure quos, illo laborum explicabo! Sunt est quos cupiditate, minima ea aspernatur cumque deleniti iure delectus praesentium non esse. Quae facere dignissimos, corporis vel, magni, placeat doloribus fuga officiis aliquam velit veritatis?',
-  //     date: '2021-10-24',
-  //     isDone: true
-  //   },
-  //   {
-  //     id: 3,
-  //     title:'Self-develop',
-  //     description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto autem commodi dolor qui molestias debitis cum voluptate ipsa corrupti minima similique maxime accusantium ut eos, nisi cumque esse rem consequatur odio aliquam. Vero, quisquam voluptatum rerum porro amet tempora nisi mollitia debitis doloremque maxime! Quaerat voluptas magni ea cupiditate qui.',
-  //     date: '2100-01-01',
-  //     isDone: false
-  //   }
-  // ];
 
   get todoTasks() : Observable<TodoTask[]>{
     return this.store.pipe(select(TodoSelector.getTodoTask));
   }
 
-/*   findItemById(id: number) : TodoTask | undefined {
-    return this.todos.find(item => item.id === id);
+  getCurrentTodoTask(id : number) : any {
+    let currentTodoTask;
+    this.store.pipe(select(TodoSelector.getCurrentTask(id))).subscribe(item => currentTodoTask = item);
+    return currentTodoTask;
+  }
+
+  findItemById(id: number) : TodoTask | undefined {
+    return this.getCurrentTodoTask(id);
   }
 
   deleteItem(deleteId: number) {
-    this.todos = this.todos.filter(item => {
-      return item.id !== deleteId;
-    })
-  } */
-
-  private generateId () : number{
-    // return this.todos.length + 1;
-    return 1;
+    this.store.dispatch(TodoActions.DeleteTask({ id: deleteId }))
   }
 
+  private generateId () : any{
+    let id;
+    this.todoTasks.subscribe(item => id = item.length + 1);
+    return id;
+  }
+
+  private findEditedTaskIndex (task : TodoTask) : any {
+    let index;
+    this.todoTasks.subscribe(item => index = item.findIndex(item => item.id === task.id));
+    return index;
+  }
+  
   addItem (task: TodoTask) {
-    // this.todos.push({...task, id:this.generateId()})
     const todoTask = {...task, id:this.generateId()}
     this.store.dispatch(TodoActions.AddTask({ payload: {todo: todoTask } }))
   }
 
- /*  editItem(task: TodoTask) {
-    let editedTaskIndex = this.todos.findIndex(item => item.id === task.id);
-    this.todos[editedTaskIndex] = task;
+  editItem(task: TodoTask) {
+    let index = this.findEditedTaskIndex(task);
+    this.store.dispatch(TodoActions.EditTask({ payload: {todo: task }, idx : index}))
   }
-  completeTask(completeId: number) {
-    const completeTask = this.todos.find(item => item.id === completeId);
-     completeTask!.isDone = true;
-  }  */
+
+  completeTask(completeTaskId: number) {
+    this.store.dispatch(TodoActions.CompleteTask({ id: completeTaskId }))
+  }
 }

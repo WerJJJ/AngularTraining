@@ -69,7 +69,6 @@ export class NewTodoComponent implements OnInit {
         date: this.profileForm.get('date')?.value,
         isDone: false
       }
-  
         if (this.isEdit) {
           this.editedTask.emit(obj)
         } else {
@@ -81,7 +80,7 @@ export class NewTodoComponent implements OnInit {
   }
 
     constructor(private fb: FormBuilder) {
-      // this.profileForm.valueChanges.subscribe(changes => console.log(this.profileForm.get('title')))
+
     }
 }
 

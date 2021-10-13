@@ -17,10 +17,15 @@ export class TaskComponent implements OnInit {
     currentTask?: TodoTask;
 
   ngOnInit(): void {
-    // this.route.params.subscribe((params: Params) => {
-    //   this.currentTask = this.todoService.todoTasks.find(item => item.id === +params.id)
-    // })
-    // селектор чтобы искать таск по id
-  }
-
+    let currentTaskId;
+    this.route.params.subscribe((params: Params) => {
+      currentTaskId = params.id;
+    })
+    if (currentTaskId) {
+      let b = this.todoService.getCurrentTodoTask(currentTaskId);
+      if (b) {
+        this.currentTask = b;
+      } 
+    }
+  } 
 }

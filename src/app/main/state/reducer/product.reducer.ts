@@ -1,6 +1,7 @@
 import * as productAction from '../actions/product.actions';
 import { createReducer, on, Action } from '@ngrx/store';
 import { TodoTask } from '../../model/todotask';
+import { getTodoTask } from '../selectors/product.selector';
 
 
 export const TODO_FEATURE_KEY = 'todo';
@@ -10,7 +11,7 @@ const todosState : {todo: TodoTask[]} = {
         {
           id: 1,
           title:'Learn Angular',
-          description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugiat ratione dignissimos voluptatem neque nesciunt obcaecati officiis totam ipsam sit itaque culpa debitis laudantium quod rerum autem, ipsum asperiores quisquam, provident nemo. Illo optio, ex suscipit, officia in alias magni perspiciatis officiis animi dicta quos possimus minima aperiam atque harum?',
+          description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam fugiat ratione dignissimos voluptatem neque nesciunt?',
           date: '2021-10-22',
           isDone: false
         },
@@ -29,38 +30,44 @@ const todosState : {todo: TodoTask[]} = {
           isDone: false
         }
       ]
-   /*  showProductCode: true,
-    products: [],
-    error: '' */
 };
 
 export const reducerTodo = createReducer(todosState,
-    // on(productAction.ToggleProductCode, (state, { payload }: any) => {
-    //     return {
-    //         ...state,
-    //         showProductCode: payload
-    //     };
-    // }),
-    // on(productAction.LoadSuccess, (state, { payload }: any) => {
-    //     return {
-    //         ...state,
-    //         products: payload,
-    //         error: ''
-    //     };
-    // }),
-    // on(productAction.LoadFail, (state, { payload }: any) => {
-    //     return {
-    //         ...state,
-    //         products: [],
-    //         error: payload
-    //     };
-    // })
     on(productAction.AddTask, (state, {payload}) => {
         return {
             ...state,
             todo: [...state.todo, payload.todo]
         };
-    })
+    }),
+    on(productAction.DeleteTask, (state, {id}) => {
+      return {
+          ...state,
+          todo: state.todo.filter(item => item.id !== id)
+      };
+  }),
+    on(productAction.EditTask, (state, {payload, idx}) => {
+      return {
+          ...state,
+          todo: state.todo.map((item,index) => {
+            if (index === idx) {
+              return payload.todo;
+            }
+            return item;
+          })
+      };
+    }),
+    on(productAction.CompleteTask, (state, {id}) => {
+      return {
+          ...state,
+          todo: state.todo.map(item => {
+            if (item.id === id) {
+              return {...item, isDone: !item.isDone}
+            } else {
+              return item;
+            }
+          })
+      };
+    }),
 
 
 

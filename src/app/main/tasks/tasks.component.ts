@@ -14,20 +14,8 @@ export class TasksComponent implements OnDestroy {
   filterField = ''
   subscription: Subscription;
 
-  // @ViewChild('searchInput', { static: false }) searchInput!: ElementRef;
   constructor(private todoService: TodoService, private fb: FormBuilder) {
-    // let timer2Sec: Subscription;
     this.subscription = this.filterControl.valueChanges.pipe(debounceTime(2000), map((x: string): string => x.trim())).subscribe(x => {console.log(x); this.filterField = x})
-    // this.filterForm.valueChanges.subscribe(changes => {
-    //   if (timer2Sec !== undefined) {
-    //     timer2Sec.unsubscribe();
-    //   }
-    //   let inputValue = this.filterForm.get('value')?.value;
-    //   inputValue = inputValue.trim();
-    //   timer2Sec = this.source.subscribe(val => {
-    //     this.filterList(inputValue);
-    //   });
-    // })
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
@@ -47,14 +35,14 @@ export class TasksComponent implements OnDestroy {
     this.isOpenModal = true;
   }
   
-  /* editItem(editId: number) {
+  editItem(editId: number) {
     this.editObject =  this.todoService.findItemById(editId) || null;
     this.isOpenModal = true;
-  } */
-/* 
+  }
+
   deleteItem(deleteId: number) {
     this.todoService.deleteItem(deleteId);
-  } */
+  }
 
   inputHandler(value: string) {
     this.value = value;
@@ -65,7 +53,7 @@ export class TasksComponent implements OnDestroy {
     this.isOpenModal = !this.isOpenModal;
   }
 
-  /* editTodoTask(editedTask: TodoTask) {
+  editTodoTask(editedTask: TodoTask) {
     this.todoService.editItem(editedTask);
     this.editObject = null;
     this.isOpenModal = false;
@@ -73,7 +61,7 @@ export class TasksComponent implements OnDestroy {
 
   completeTodoTask(completeId: number) {
     this.todoService.completeTask(completeId);
-  } */
+  }
 
   filterList(value: string) {
     console.log(value)
